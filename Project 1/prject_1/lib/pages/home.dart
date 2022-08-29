@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,15 +12,73 @@ class home extends StatelessWidget {
     'Children'
   ];
 
-  var productJason = [
-    {"ProductN": "Men Watch", "description": 'Sereies - 5 Watch'},
-    {"ProductN": "Rist Watch", "description": 'Sereies - 6 Watch'},
-    {"ProductN": "Women Watch", "description": 'Sereies - 7 Watch'},
-    {"ProductN": "Ladies Watch", "description": 'Sereies - 8 Watch'},
-    {"ProductN": "Child Watch", "description": 'Sereies - 9 Watch'},
-    {"ProductN": "Indian Watch", "description": 'Sereies - 10 Watch'},
-    {"ProductN": "Bangladeshi Watch", "description": 'Sereies - 11 Watch'},
-    {"ProductN": "Pakistani Watch", "description": 'Sereies - 12 Watch'},
+  final List productJason = [
+    {
+      "ProductN": "Men Watch",
+      "description": 'Sereies - 5 Watch',
+      'image': 'assets/image4.png',
+      'price' : '\$500'
+    },
+    {
+      "ProductN": "Rist Watch",
+      "description": 'Sereies - 6 Watch',
+      'image': 'assets/image5.png',
+      'price' : '\$500'
+    },
+    {
+      "ProductN": "Women Watch",
+      "description": 'Sereies - 7 Watch',
+      'image': 'assets/image6.png',
+      'price' : '\$500'
+    },
+    {
+      "ProductN": "Ladies Watch",
+      "description": 'Sereies - 8 Watch',
+      'image': 'assets/image7.png',
+      'price' : '\$500'
+    },
+    {
+      "ProductN": "Child Watch",
+      "description": 'Sereies - 9 Watch',
+      'image': 'assets/image8.png',
+      'price' : '\$500'
+    },
+    {
+      "ProductN": "Indian Watch",
+      "description": 'Sereies - 10 Watch',
+      'image': 'assets/image9.png',
+      'price' : '\$500'
+    },
+    {
+      "ProductN": "Bengal Watch",
+      "description": 'Sereies - 11 Watch',
+      'image': 'assets/image10.png',
+      'price' : '\$500'
+    },
+    {
+      "ProductN": "Pakistani Watch",
+      "description": 'Sereies - 12 Watch',
+      'image': 'assets/image11.png',
+      'price' : '\$500'
+    },
+    {
+      "ProductN": "Pakistani Watch",
+      "description": 'Sereies - 12 Watch',
+      'image': 'assets/image11.png',
+      'price' : '\$500'
+    },
+    {
+      "ProductN": "Pakistani Watch",
+      "description": 'Sereies - 12 Watch',
+      'image': 'assets/image11.png',
+      'price' : '\$500'
+    },
+    {
+      "ProductN": "Pakistani Watch",
+      "description": 'Sereies - 12 Watch',
+      'image': 'assets/image11.png',
+      'price' : '\$500'
+    },
   ];
 
   @override
@@ -40,10 +96,7 @@ class home extends StatelessWidget {
             children: [
               Text(
                 "Hello Azinkia Prince !",
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w500
-                ),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 height: 12,
@@ -194,7 +247,7 @@ class home extends StatelessWidget {
                           padding:
                               EdgeInsets.symmetric(horizontal: 30, vertical: 8),
                           decoration: BoxDecoration(
-                              color: Colors.grey,
+                              color: Color.fromARGB(255, 199, 191, 191),
                               borderRadius: BorderRadius.circular(50)),
                           child: Text(
                             catergoties[index],
@@ -204,26 +257,90 @@ class home extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
-              Container(
-                height: 500,
-                child: GridView.builder(
-                   
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        
-                        color: Colors.black,
+              
 
-                        child: ListTile(
-                          title: Text(productJson[index]['ProductN'].toString),
-                          
-                        ),
+                Container(
+                  
+                  height: 500,
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: productJason.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, childAspectRatio: 0.7),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 20, top: 65),
+                        child: Container(
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color.fromARGB(255, 245, 239, 239),
+                                    spreadRadius: 5,
+                                    blurRadius: 10
+                                  )
+                                ]
+                                ),
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                Positioned(
+                                  top: 100,
+                                  left: 20,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        productJason[index]['ProductN']!,
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      SizedBox(
+                                        height: 7,
+                                      ),
+                                      Text(
+                                        productJason[index]['description']!,
+                                        textAlign: TextAlign.left,
+                                      ),
+
+                                      SizedBox(
+                                        height: 7,
+                                      ),
+                                      Text(
+                                        productJason[index]['price']!,
+                                        textAlign: TextAlign.left,style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          color: Color.fromARGB(255, 243, 100, 33)
+                                        ),
+                                      ),
+
+
+                                    ],
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 27,
+                                  top: -35,
+                                  child: Container(
+                                      height: 110,
+                                      width: 110,
+                                      decoration: BoxDecoration(
+                                          color:
+                                              Color.fromARGB(255, 255, 228, 216),
+                                          borderRadius:
+                                              BorderRadius.circular(100)),
+                                      child: Image.asset('assets/image5.png')),
+                                )
+                              ],
+                            )),
                       );
-                    },),
-              )
+                    },
+                  ),
+                ),
             ],
           ),
         ),
