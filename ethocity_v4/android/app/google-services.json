@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "84672096025",
+    "project_id": "ethocity-v4",
+    "storage_bucket": "ethocity-v4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84672096025:android:fb9160fb91966e81154788",
+        "android_client_info": {
+          "package_name": "com.example.ethocity_v4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84672096025-h69p9gkkgd9kk5jimvl6k3874j60oo7a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ethocity_v4",
+            "certificate_hash": "91334ee4c1a23bf59b41a07a4d0bf6f06445edbd"
+          }
+        },
+        {
+          "client_id": "84672096025-ref7e6p00b5ho6nlo95us3910ddi8sk7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP-LU2OiXd_btwAX7azQ0hJEm2kNeFTxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84672096025-ref7e6p00b5ho6nlo95us3910ddi8sk7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
