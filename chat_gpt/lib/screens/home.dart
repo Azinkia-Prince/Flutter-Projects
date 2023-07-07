@@ -1,7 +1,11 @@
 import 'package:chat_gpt/constants/colors.dart';
+import 'package:chat_gpt/constants/dummy-data.dart';
+import 'package:chat_gpt/widget/dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class homeScreen extends StatelessWidget {
+  bool _textLoading = true;
   TextEditingController textEditingController = TextEditingController();
 
   @override
@@ -17,21 +21,96 @@ class homeScreen extends StatelessWidget {
         ),
         title: Text('Chat GPT'),
         backgroundColor: appbarClr,
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
+        actions: [
+          IconButton(
+              onPressed: () async{
+              await showModalBottomSheet(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+                  backgroundColor: scaffoldClr,
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(25),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Select a model : ',style: TextStyle(fontSize: 17),),
+                          Flexible(child: dropDown())
+                        ],
+
+                      ),
+                    );
+                  },
+                );
+              },
+              icon: Icon(Icons.more_vert))
+        ],
       ),
       backgroundColor: Color(0xFF343541),
       body: Column(
         children: [
           Flexible(
             child: ListView.builder(
-              itemCount: 105,
+              itemCount: dummyJson.length,
               itemBuilder: (context, index) {
-                return Text(
-                  "Flutter is a powerful framework",
-                  style: TextStyle(color: Colors.white),
+                String msg = dummyJson[index]['msg'].toString();
+                int chatIndex =
+                    int.parse(dummyJson[index]['chatIndex'].toString());
+                return Flexible(
+                  child: Material(
+                    color: chatIndex == 0 ? cardColor : scaffoldClr,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            chatIndex == 0
+                                ? 'assets/images/man-avatar-logo.png'
+                                : 'assets/images/ai-logo.png',
+                            height: 30,
+                            width: 30,
+                          ),
+                          SizedBox(
+                            width: 7,
+                          ),
+                          Expanded(child: Text(msg)),
+                          chatIndex == 0
+                              ? SizedBox.shrink()
+                              : Row(
+                                  children: [
+                                    IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.thumb_up_alt,
+                                          size: 15,
+                                          color: Colors.white,
+                                        )),
+                                    IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.thumb_down_alt,
+                                          size: 15,
+                                          color: Colors.white,
+                                        ))
+                                  ],
+                                )
+                        ],
+                      ),
+                    ),
+                  ),
                 );
               },
             ),
+          ),
+          if (_textLoading) ...[
+            SpinKitThreeBounce(
+              color: Colors.white,
+              size: 18,
+            )
+          ],
+          SizedBox(
+            height: 5,
           ),
           Material(
               color: Color(0xFF40414f),
@@ -46,7 +125,7 @@ class homeScreen extends StatelessWidget {
                     hintStyle: TextStyle(color: Colors.white.withOpacity(0.3)),
                     suffixIcon: IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.send, color: appbarClr)),
+                        icon: Icon(Icons.send, color: Colors.white)),
                     enabledBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
                   ),
