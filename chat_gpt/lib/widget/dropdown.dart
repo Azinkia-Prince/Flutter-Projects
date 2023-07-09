@@ -1,5 +1,10 @@
+import 'package:chat_gpt/api-model/apiModel.dart';
 import 'package:chat_gpt/constants/colors.dart';
+import 'package:chat_gpt/provider/modelsProvider.dart';
+import 'package:chat_gpt/services/api-services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 import '../constants/dummy-data.dart';
 
 class dropDown extends StatefulWidget {
@@ -8,25 +13,40 @@ class dropDown extends StatefulWidget {
 }
 
 class _dropDownState extends State<dropDown> {
-  
-  static List<String> modelList = [
-    'Model 1',
-    'Model 2',
-    'Model 3',
-  ];
-  String currentValue = modelList.first;
+  modelTypeClass modelObj = modelTypeClass();
+  String? currentValue;
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonHideUnderline(
-      child: DropdownButton(
-        dropdownColor: scaffoldClr,
-        focusColor: Colors.transparent,
-        items: modelList.map((item) => DropdownMenuItem(child: Text(item),value: item,)).toList(),
-        value: currentValue,
-        onChanged: (val) => setState(() {
-          currentValue = val.toString();
-        }),
-      ),
+    final ModelsProvider = Provider.of<modelsProvider>(context,listen: false);
+    currentValue = ModelsProvider.getCurrentValue;
+    return FutureBuilder(
+      future: ModelsProvider.getAllModels(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List<modelTypesModel> modelList = snapshot.data ?? [];
+          return DropdownButtonHideUnderline(
+            child: DropdownButton(
+              alignment: Alignment.center,
+              dropdownColor: scaffoldClr,
+              focusColor: Colors.transparent,
+              items: modelList
+                  .map((item) => DropdownMenuItem(
+                        child: Text(item.id.toString(),),
+                        value: item.id.toString(),
+                      ))
+                  .toList(),
+              value: currentValue,
+              onChanged: (val){
+                setState(() {
+                  currentValue=val.toString();
+                });
+                ModelsProvider.setCurrentModel(val.toString());
+              },
+            ),
+          );
+        }
+        return SizedBox.shrink();
+      },
     );
   }
 }
