@@ -19,6 +19,7 @@ class _homeScreenState extends State<homeScreen> {
   static TextEditingController textEditingController = TextEditingController();
  
   modelTypeClass modelTypeClassObj = modelTypeClass();
+  
   List<chatModel> chatList = [];
 
   @override
@@ -161,4 +162,5 @@ class _homeScreenState extends State<homeScreen> {
     );
   }
 }
+
 

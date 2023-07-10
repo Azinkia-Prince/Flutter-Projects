@@ -8,7 +8,7 @@ class modelTypeClass {
     Response response = await get(Uri.parse('https://api.openai.com/v1/models'),
         headers: {
           'Authorization':
-              'Bearer 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'
+              'Bearer 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'
         });
     Map<String, dynamic> bodyJson = jsonDecode(response.body);
     List<dynamic> data = bodyJson['data'];
@@ -23,7 +23,7 @@ class modelTypeClass {
         await post(Uri.parse('https://api.openai.com/v1/chat/completions'),
             headers: {
               'Authorization':
-                  'Bearer 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',
+                  'Bearer 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',
               'Content-Type': 'application/json'
             },
             body: jsonEncode({
